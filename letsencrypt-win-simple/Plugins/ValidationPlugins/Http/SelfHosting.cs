@@ -58,6 +58,8 @@ namespace LetsEncrypt.ACME.Simple.Plugins.ValidationPlugins.Http
         }
         
         public override void DeleteFile(string path) {}
+        public override bool FileExists(string filepath) => Files.ContainsKey(filepath);
+        public override string ReadFile(string filepath) => Files[filepath];
         public override void DeleteFolder(string path) {}
         public override bool IsEmpty(string path) => true;
         public override void WriteFile(string path, string content) => Files.Add(path, content);

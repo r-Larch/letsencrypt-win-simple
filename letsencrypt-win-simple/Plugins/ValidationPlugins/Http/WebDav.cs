@@ -23,6 +23,16 @@ namespace LetsEncrypt.ACME.Simple.Plugins.ValidationPlugins.Http
             _webdavClient.Delete(path);
         }
 
+        public override bool FileExists(string filepath)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string ReadFile(string filepath)
+        {
+            throw new NotImplementedException();
+        }
+
         public override void DeleteFolder(string path)
         {
             _webdavClient.Delete(path);

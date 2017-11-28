@@ -97,6 +97,15 @@ namespace LetsEncrypt.ACME.Simple.Plugins.ValidationPlugins
                 _log.Debug("Writing web.config");
                 var destination = CombinePath(target.WebRootPath, challenge.FilePath.Replace(challenge.Token, "web.config"));
                 var content = GetWebConfig(target);
+
+                if (FileExists(destination)) {
+                    var existingContent = ReadFile(destination);
+                    if (existingContent == content) {
+                        // do not touch web.config if it has allredy the required content.
+                        return;
+                    }
+                }
+
                 WriteFile(destination, content);
             }
         }
@@ -211,6 +220,20 @@ namespace LetsEncrypt.ACME.Simple.Plugins.ValidationPlugins
         /// <param name="root"></param>
         /// <param name="path"></param>
         public abstract void DeleteFile(string path);
+
+        /// <summary>
+        /// Chack if a file exists
+        /// </summary>
+        /// <param name="filepath"></param>
+        /// <returns></returns>
+        public abstract bool FileExists(string filepath);
+
+        /// <summary>
+        /// Get contents of a file
+        /// </summary>
+        /// <param name="filepath"></param>
+        /// <returns></returns>
+        public abstract string ReadFile(string filepath);
 
         /// <summary>
         /// Check if folder is empty

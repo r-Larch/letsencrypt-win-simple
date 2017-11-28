@@ -24,6 +24,16 @@ namespace LetsEncrypt.ACME.Simple.Plugins.ValidationPlugins.Http
             _ftpClient.Delete(path, FtpClient.FileType.File);
         }
 
+        public override bool FileExists(string filepath)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string ReadFile(string filepath)
+        {
+            throw new NotImplementedException();
+        }
+
         public override void DeleteFolder(string path)
         {
             _ftpClient.Delete(path, FtpClient.FileType.Directory);

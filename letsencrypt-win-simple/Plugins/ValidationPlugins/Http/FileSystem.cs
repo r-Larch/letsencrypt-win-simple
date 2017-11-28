@@ -29,6 +29,16 @@ namespace LetsEncrypt.ACME.Simple.Plugins.ValidationPlugins.Http
             (new FileInfo(path)).Delete();
         }
 
+        public override bool FileExists(string filepath)
+        {
+            return File.Exists(filepath);
+        }
+
+        public override string ReadFile(string filepath)
+        {
+            return File.ReadAllText(filepath);
+        }
+
         public override void DeleteFolder(string path)
         {
             (new DirectoryInfo(path)).Delete();
