@@ -120,8 +120,10 @@ namespace LetsEncrypt.ACME.Simple.Plugins.ValidationPlugins
         {
             if (target.IIS == true)
             {
-                _log.Debug("Deleting web.config");
-                DeleteFile(CombinePath(target.WebRootPath, challenge.FilePath.Replace(challenge.Token, "web.config")));
+                if (Properties.Settings.Default.CleanupWebconfig) {
+                    _log.Debug("Deleting web.config");
+                    DeleteFile(CombinePath(target.WebRootPath, challenge.FilePath.Replace(challenge.Token, "web.config")));
+                }
             }
         }
 

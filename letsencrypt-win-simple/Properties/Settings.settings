@@ -35,5 +35,8 @@
     <Setting Name="Proxy" Type="System.String" Scope="Application">
       <Value Profile="(Default)">[System]</Value>
     </Setting>
+    <Setting Name="CleanupWebconfig" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
